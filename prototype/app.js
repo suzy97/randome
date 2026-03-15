@@ -1,13 +1,12 @@
 const screens = [
   { id: "welcome", label: "Intro" },
-  { id: "goals", label: "Goals" },
-  { id: "routine", label: "Routine" },
+  { id: "import", label: "Import" },
+  { id: "processing", label: "Process" },
   { id: "home", label: "Home" },
-  { id: "prompt", label: "Prompt" },
-  { id: "recommend", label: "Recommend" },
-  { id: "session", label: "Session" },
-  { id: "reflection", label: "Reflection" },
-  { id: "report", label: "Report" },
+  { id: "push", label: "Push" },
+  { id: "card", label: "Card" },
+  { id: "practice", label: "Practice" },
+  { id: "library", label: "Library" },
 ];
 
 const screenContainer = document.getElementById("screen");
@@ -26,6 +25,42 @@ function renderJumpChips(activeId) {
   });
 }
 
+function wirePracticeChoices() {
+  const feedback = screenContainer.querySelector("#practice-feedback");
+  if (!feedback) {
+    return;
+  }
+
+  const title = feedback.querySelector("strong");
+  const body = feedback.querySelector("p");
+
+  screenContainer.querySelectorAll(".choice-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const isCorrect = chip.dataset.correct === "true";
+
+      screenContainer.querySelectorAll(".choice-chip").forEach((button) => {
+        button.classList.remove("correct", "wrong");
+      });
+
+      feedback.classList.remove("is-correct", "is-wrong");
+
+      if (isCorrect) {
+        chip.classList.add("correct");
+        feedback.classList.add("is-correct");
+        title.textContent = "좋아요. `be more likely to`가 가장 자연스럽습니다.";
+        body.textContent =
+          "`likely`는 가능성을 말할 때 쓰고, 이 문장에서는 습관 형성을 설명하는 핵심 패턴으로 반복 학습 가치가 큽니다.";
+      } else {
+        chip.classList.add("wrong");
+        feedback.classList.add("is-wrong");
+        title.textContent = "이 표현은 어색합니다. 정답은 `likely`예요.";
+        body.textContent =
+          "`sure`나 `ready`는 문맥상 가능성의 증가를 정확히 전달하지 못합니다. 이 문장은 `be more likely to + 동사` 패턴을 익히는 데 초점이 있습니다.";
+      }
+    });
+  });
+}
+
 function wireScreenActions() {
   screenContainer.querySelectorAll("[data-next]").forEach((element) => {
     element.addEventListener("click", () => {
@@ -39,23 +74,7 @@ function wireScreenActions() {
     });
   });
 
-  screenContainer.querySelectorAll(".emoji").forEach((emoji) => {
-    emoji.addEventListener("click", () => {
-      screenContainer.querySelectorAll(".emoji").forEach((item) => {
-        item.classList.remove("active");
-      });
-      emoji.classList.add("active");
-    });
-  });
-
-  screenContainer.querySelectorAll(".action-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      const next = card.dataset.next;
-      if (next) {
-        renderScreen(next);
-      }
-    });
-  });
+  wirePracticeChoices();
 }
 
 function renderScreen(screenId) {

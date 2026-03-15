@@ -3,37 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WayUp Prototype</title>
+    <title>Randome Prototype</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="page-shell">
       <aside class="info-panel">
-        <p class="eyebrow">WayUp Clickable Prototype</p>
-        <h1>출퇴근 시간을 흘려보내지 않게</h1>
+        <p class="eyebrow">Randome Clickable Prototype</p>
+        <h1>유튜브 한 편이<br />하루 영어 루프로</h1>
         <p class="lead">
-          시뮬레이터 없이도 바로 볼 수 있도록, 모바일 앱 핵심 플로우를
-          브라우저에서 재현한 프로토타입입니다.
+          사용자가 넣은 유튜브 URL에서 영어 스크립트를 추출하고, 중요한 문장을
+          하루 동안 랜덤 푸시로 다시 꺼내 보여주는 서비스 초안입니다.
         </p>
 
         <section class="info-block">
           <h2>포함한 플로우</h2>
           <ul>
-            <li>온보딩</li>
-            <li>목표/루틴 설정</li>
-            <li>이동 감지 프롬프트</li>
-            <li>행동 추천</li>
-            <li>세션 진행/완료</li>
-            <li>일간 리포트</li>
+            <li>온보딩과 가치 제안</li>
+            <li>유튜브 URL 입력</li>
+            <li>스크립트 분석 및 문장 추출</li>
+            <li>오늘의 랜덤 푸시</li>
+            <li>문장 카드와 한국어 해석</li>
+            <li>빈칸 완성과 응용 연습</li>
+            <li>영상별 문장 라이브러리</li>
           </ul>
         </section>
 
         <section class="info-block">
           <h2>조작 방법</h2>
           <ul>
-            <li>오른쪽 모바일 화면 안 버튼을 눌러 단계 이동</li>
-            <li>상단 `Demo Flow` 칩으로 원하는 화면 즉시 이동</li>
-            <li>마지막 `리포트` 화면까지 흐름 확인 가능</li>
+            <li>오른쪽 모바일 화면 안 버튼으로 흐름 이동</li>
+            <li>상단 Demo Flow 칩으로 원하는 화면 점프</li>
+            <li>연습 화면에서는 정답 보기를 직접 눌러볼 수 있음</li>
+          </ul>
+        </section>
+
+        <section class="info-block">
+          <h2>제품 방향</h2>
+          <ul>
+            <li>일반 영어 앱이 아니라 개인화된 문장 리마인더</li>
+            <li>번역만 보여주지 않고 짧은 사고 과제를 함께 제공</li>
+            <li>하루 3~5회 랜덤 푸시로 반복 노출</li>
           </ul>
         </section>
 
@@ -43,9 +53,9 @@
       <main class="device-stage">
         <div class="phone">
           <div class="phone-top">
-            <span>12:58</span>
-            <span>WayUp</span>
-            <span>46%</span>
+            <span>10:24</span>
+            <span>Randome</span>
+            <span>71%</span>
           </div>
 
           <div class="screen" id="screen"></div>
@@ -55,93 +65,129 @@
 
     <template id="screen-welcome">
       <section class="screen-view welcome-view">
-        <div class="hero-blob"></div>
-        <p class="screen-kicker">Morning commute, but intentional</p>
-        <h2>출퇴근 시간을,<br />내 편으로</h2>
+        <div class="hero-orbit"></div>
+        <p class="screen-kicker">YouTube to Daily English</p>
+        <h2>보고 끝나는 영어를<br />하루 종일 다시 쓰게</h2>
         <p class="screen-copy">
-          지하철이나 버스를 타는 순간 WayUp이 시작됩니다. 숏폼으로 흘러가기 전,
-          지금 할 수 있는 가장 작은 행동을 제안합니다.
+          관심 있는 유튜브 한 편만 넣으면, Randome이 쓸 만한 영어 문장을
+          뽑아 한국어와 함께 정리하고 하루 동안 랜덤하게 다시 보내줍니다.
         </p>
 
         <div class="preview-stack">
           <div class="preview-card">
-            <span>Auto detect</span>
-            <strong>강남역 → 성수동</strong>
-            <small>예상 22분</small>
+            <span>Input</span>
+            <strong>URL 하나</strong>
+            <small>유튜브 링크 붙여넣기</small>
+          </div>
+          <div class="preview-card">
+            <span>Push</span>
+            <strong>오늘의 문장 4개</strong>
+            <small>09:00-21:00 사이 랜덤 발송</small>
           </div>
           <div class="preview-card muted">
-            <span>Suggested</span>
-            <strong>3분 회고 먼저 할까요?</strong>
+            <span>Practice</span>
+            <strong>빈칸 채우기</strong>
+            <small>20초 안에 끝나는 사고형 복습</small>
           </div>
         </div>
 
         <div class="bottom-actions">
-          <button class="btn btn-primary" data-next="goals">시작하기</button>
+          <button class="btn btn-primary" data-next="import">시작하기</button>
         </div>
       </section>
     </template>
 
-    <template id="screen-goals">
+    <template id="screen-import">
       <section class="screen-view">
         <div class="top-copy">
           <p class="screen-kicker">Step 1</p>
-          <h2>출퇴근 시간에<br />무엇을 얻고 싶나요?</h2>
+          <h2>유튜브 URL을 넣으면<br />학습 재료가 됩니다</h2>
           <p class="screen-copy">
-            1~3개를 고르면 이동시간 길이와 시간대에 맞는 행동을 추천합니다.
+            영어 자막이 있는 영상이면 됩니다. 보고 싶은 콘텐츠를 곧바로 내
+            문장 데이터베이스로 바꿉니다.
           </p>
         </div>
 
-        <div class="selection-grid">
-          <button class="pill selected">영어</button>
-          <button class="pill">독서</button>
-          <button class="pill selected">회고</button>
-          <button class="pill">뉴스</button>
-          <button class="pill">이직 준비</button>
-          <button class="pill selected">의도적 휴식</button>
+        <div class="input-card">
+          <label for="youtube-url">YouTube URL</label>
+          <div class="fake-input" id="youtube-url">
+            https://www.youtube.com/watch?v=tiny-habits-talk
+          </div>
+          <small>예시: 인터뷰, 자기계발, 커리어, 테크, 브이로그</small>
         </div>
 
-        <div class="floating-note">
-          <span>선택됨</span>
-          <strong>영어 · 회고 · 의도적 휴식</strong>
+        <div class="note-card">
+          <span>이번 영상에서 기대하는 것</span>
+          <strong>자주 쓰는 표현을 머리에 남기기</strong>
+          <p>긴 강의 전체를 외우는 게 아니라, 재사용 가능한 문장을 잡아냅니다.</p>
+        </div>
+
+        <div class="sentence-glimpse">
+          <article class="glimpse-item selected">
+            <span>Candidate</span>
+            <strong>If you make it tiny, you're more likely to do it every day.</strong>
+          </article>
+          <article class="glimpse-item">
+            <span>Candidate</span>
+            <strong>The point is not to memorize everything.</strong>
+          </article>
         </div>
 
         <div class="bottom-actions">
           <button class="btn btn-secondary" data-next="welcome">이전</button>
-          <button class="btn btn-primary" data-next="routine">다음</button>
+          <button class="btn btn-primary" data-next="processing">분석 시작</button>
         </div>
       </section>
     </template>
 
-    <template id="screen-routine">
+    <template id="screen-processing">
       <section class="screen-view">
         <div class="top-copy">
-          <p class="screen-kicker">Step 2</p>
-          <h2>출근길과 퇴근길은<br />다르게 설계합니다</h2>
+          <p class="screen-kicker">Processing</p>
+          <h2>스크립트를 정리하고<br />쓸 문장만 남깁니다</h2>
           <p class="screen-copy">
-            아침엔 준비, 저녁엔 회복. 둘을 같은 생산성 모드로 묶지 않습니다.
+            영상 전체를 그대로 쌓지 않고, 하루 동안 다시 볼 가치가 있는 문장만
+            추려냅니다.
           </p>
         </div>
 
-        <div class="mode-card accent-sunrise">
-          <span class="mode-label">출근길</span>
-          <strong>오늘 할 일 정리</strong>
-          <small>보조 루틴: 영어 5분, 뉴스 1개</small>
+        <div class="pipeline-card">
+          <div class="pipeline-step done">
+            <strong>01. 자막 확인</strong>
+            <small>English transcript found</small>
+          </div>
+          <div class="pipeline-step done">
+            <strong>02. 후보 문장 추출</strong>
+            <small>48 lines -> 18 reusable sentences</small>
+          </div>
+          <div class="pipeline-step active">
+            <strong>03. 한국어 해석 생성</strong>
+            <small>Natural Korean meaning</small>
+          </div>
+          <div class="pipeline-step">
+            <strong>04. 연습 문제 생성</strong>
+            <small>Cloze + example completion</small>
+          </div>
         </div>
 
-        <div class="mode-card accent-dusk">
-          <span class="mode-label">퇴근길</span>
-          <strong>회복 모드</strong>
-          <small>보조 루틴: 회고 3분, 저장 글 1개</small>
-        </div>
-
-        <div class="permission-banner">
-          <span>권한 안내</span>
-          <p>위치와 알림을 허용하면 출퇴근 시작 시 자동으로 제안할 수 있어요.</p>
+        <div class="stats-row">
+          <div class="metric-box">
+            <span>선정 문장</span>
+            <strong>14개</strong>
+          </div>
+          <div class="metric-box">
+            <span>오늘 푸시 예정</span>
+            <strong>4회</strong>
+          </div>
+          <div class="metric-box">
+            <span>연습 템플릿</span>
+            <strong>28개</strong>
+          </div>
         </div>
 
         <div class="bottom-actions">
-          <button class="btn btn-secondary" data-next="goals">이전</button>
-          <button class="btn btn-primary" data-next="home">완료</button>
+          <button class="btn btn-secondary" data-next="import">이전</button>
+          <button class="btn btn-primary" data-next="home">결과 보기</button>
         </div>
       </section>
     </template>
@@ -151,218 +197,224 @@
         <header class="home-header">
           <div>
             <p class="screen-kicker">Today</p>
-            <h2>안녕하세요, 효진님</h2>
+            <h2>오늘의 문장 루프</h2>
           </div>
-          <button class="ghost-btn" data-next="report">리포트</button>
+          <button class="ghost-btn" data-next="library">보관함</button>
         </header>
 
-        <div class="big-stat-card">
-          <span>오늘 의도적으로 쓴 이동시간</span>
-          <strong>18분</strong>
-          <small>완료한 행동 2개 · 회복 모드 1회</small>
+        <div class="hero-card">
+          <span>새로 가져온 영상</span>
+          <strong>Tiny Habits Interview</strong>
+          <small>저장된 핵심 문장 14개 · 랜덤 푸시 4회 준비됨</small>
         </div>
 
         <div class="section-title">
-          <h3>다음 예상 루틴</h3>
-          <button class="text-btn" data-next="prompt">데모 보기</button>
+          <h3>다음 푸시 윈도우</h3>
+          <button class="text-btn" data-next="push">미리 보기</button>
         </div>
 
-        <div class="commute-card">
-          <div>
-            <span class="badge">퇴근길</span>
-            <strong>성수 → 합정</strong>
-            <small>예상 24분</small>
+        <div class="timeline-card">
+          <div class="timeline-slot active">
+            <span>10:40</span>
+            <strong>지금 열릴 문장</strong>
+            <small>If you make it tiny...</small>
           </div>
-          <div class="card-actions">
-            <button class="mini-btn" data-next="prompt">자동 제안</button>
-            <button class="mini-btn subtle" data-next="recommend">수동 시작</button>
+          <div class="timeline-slot">
+            <span>13:20</span>
+            <strong>점심 이후 리마인드</strong>
+            <small>The point is not to memorize everything.</small>
+          </div>
+          <div class="timeline-slot">
+            <span>18:10</span>
+            <strong>퇴근 전 한 번 더</strong>
+            <small>Notice what keeps showing up.</small>
           </div>
         </div>
 
         <div class="section-title">
-          <h3>오늘 추천 행동</h3>
+          <h3>오늘 먼저 볼 문장</h3>
+          <button class="text-btn" data-next="card">바로 학습</button>
         </div>
 
         <div class="mini-list">
           <article class="mini-item">
-            <strong>3분 회고</strong>
-            <small>퇴근길에 가장 자주 선택한 루틴</small>
+            <strong>If you make it tiny, you're more likely to do it every day.</strong>
+            <small>작게 만들수록 매일 하게 될 가능성이 커진다</small>
           </article>
           <article class="mini-item">
-            <strong>저장한 글 1개 읽기</strong>
-            <small>예상 7분</small>
+            <strong>The point is not to memorize everything.</strong>
+            <small>핵심은 모든 것을 외우는 데 있지 않다</small>
           </article>
           <article class="mini-item">
-            <strong>의도적 휴식</strong>
-            <small>호흡 + 음악 5분</small>
+            <strong>Notice what keeps showing up.</strong>
+            <small>반복해서 나타나는 걸 알아차려라</small>
           </article>
         </div>
 
         <nav class="tab-bar">
           <button class="tab active">홈</button>
-          <button class="tab" data-next="report">리포트</button>
-          <button class="tab">설정</button>
+          <button class="tab" data-next="library">보관함</button>
+          <button class="tab" data-next="practice">연습</button>
         </nav>
       </section>
     </template>
 
-    <template id="screen-prompt">
-      <section class="screen-view prompt-view">
-        <div class="status-chip">자동 감지됨</div>
-
-        <div class="prompt-card">
-          <p class="screen-kicker">퇴근길 · 예상 24분</p>
-          <h2>지금 3분만 먼저<br />내 시간으로 써볼까요?</h2>
-          <p class="screen-copy">
-            퇴근길에는 회복 모드가 기본입니다. 짧게 정리하고 나면 남은 시간은
-            편하게 보내도 됩니다.
-          </p>
-
-          <div class="prompt-reco">
-            <span>지금 추천</span>
-            <strong>3분 회고</strong>
-            <small>오늘 가장 부담 없는 루틴</small>
-          </div>
+    <template id="screen-push">
+      <section class="screen-view push-view">
+        <div class="push-bubble">
+          <span class="badge">푸시 도착</span>
+          <strong>오늘 한 문장만 다시 떠올려볼까요?</strong>
+          <small>If you make it tiny, you're more likely...</small>
         </div>
 
-        <div class="bottom-actions column">
-          <button class="btn btn-primary" data-next="recommend">루틴 시작</button>
-          <button class="btn btn-secondary" data-next="home">이번엔 제외</button>
-          <button class="text-btn muted-link" data-next="home">이 경로는 덜 보기</button>
+        <div class="sentence-card spotlight">
+          <p class="screen-kicker">10:40 Random Push</p>
+          <h2>If you make it tiny,<br />you're more likely to do it every day.</h2>
+          <p class="translation">작게 만들수록 그것을 매일 하게 될 가능성이 더 커진다.</p>
+
+          <div class="insight-strip">
+            <span>왜 뽑았나</span>
+            <strong>`make it tiny`는 습관, 공부, 업무 루틴에 모두 재사용 가능</strong>
+          </div>
+
+          <div class="bottom-actions column">
+            <button class="btn btn-primary" data-next="card">문장 열기</button>
+            <button class="btn btn-secondary" data-next="home">나중에 보기</button>
+            <button class="text-btn muted-link" data-next="home">이 영상 푸시 줄이기</button>
+          </div>
         </div>
       </section>
     </template>
 
-    <template id="screen-recommend">
+    <template id="screen-card">
       <section class="screen-view">
-        <div class="top-copy">
-          <p class="screen-kicker">퇴근길 추천</p>
-          <h2>지금 가능한 행동 3개</h2>
-          <p class="screen-copy">부담이 가장 낮은 것부터 보여드립니다.</p>
-        </div>
+        <div class="sentence-card">
+          <p class="screen-kicker">Sentence Card</p>
+          <h2>If you make it tiny,<br />you're more likely to do it every day.</h2>
+          <p class="translation">작게 만들수록 그것을 매일 하게 될 가능성이 더 커진다.</p>
 
-        <div class="action-card action-primary" data-next="session">
-          <div>
-            <span class="badge soft">3분</span>
-            <strong>퇴근길 회고</strong>
-            <small>오늘 가장 에너지 덜 드는 선택</small>
+          <div class="card-grid">
+            <article class="focus-card">
+              <span>핵심 구문</span>
+              <strong>be more likely to + 동사</strong>
+              <small>무언가를 하게 될 가능성이 더 크다</small>
+            </article>
+            <article class="focus-card">
+              <span>영상 출처</span>
+              <strong>Tiny Habits Interview</strong>
+              <small>03:18 지점에서 추출</small>
+            </article>
           </div>
-          <span class="arrow">›</span>
-        </div>
 
-        <div class="action-card" data-next="session">
-          <div>
-            <span class="badge">7분</span>
-            <strong>저장한 글 1개 읽기</strong>
-            <small>출퇴근 전용 읽기 리스트</small>
+          <div class="example-card">
+            <span>응용 예시</span>
+            <strong>If I make my study plan tiny, I'm more likely to keep it.</strong>
+            <small>공부 계획을 작게 만들면 꾸준히 지킬 가능성이 커진다.</small>
           </div>
-          <span class="arrow">›</span>
-        </div>
-
-        <div class="action-card" data-next="session">
-          <div>
-            <span class="badge">5분</span>
-            <strong>의도적 휴식</strong>
-            <small>음악 + 호흡으로 회복하기</small>
-          </div>
-          <span class="arrow">›</span>
-        </div>
-
-        <div class="bottom-actions">
-          <button class="btn btn-secondary" data-next="home">나중에</button>
-        </div>
-      </section>
-    </template>
-
-    <template id="screen-session">
-      <section class="screen-view session-view">
-        <p class="screen-kicker">Active session</p>
-        <h2>퇴근길 회고</h2>
-
-        <div class="timer-ring">
-          <div>
-            <strong>02:14</strong>
-            <small>남은 시간</small>
-          </div>
-        </div>
-
-        <div class="focus-card">
-          <span>오늘의 프롬프트</span>
-          <strong>오늘 가장 잘한 선택 하나와, 내일 줄일 일 하나를 적어보세요.</strong>
-        </div>
-
-        <div class="note-card">
-          <p>잘한 선택: 회의 전에 우선순위를 다시 정리했다.</p>
-          <p>내일 줄일 일: 퇴근 직전 메신저 확인을 늦게 하지 않기.</p>
-        </div>
-
-        <div class="bottom-actions">
-          <button class="btn btn-secondary" data-next="recommend">다른 행동</button>
-          <button class="btn btn-primary" data-next="reflection">완료</button>
-        </div>
-      </section>
-    </template>
-
-    <template id="screen-reflection">
-      <section class="screen-view">
-        <div class="completion-mark">✓</div>
-        <p class="screen-kicker">세션 완료</p>
-        <h2>퇴근길 9분을<br />내 방식으로 썼어요</h2>
-        <p class="screen-copy">
-          회복 모드를 선택해도 괜찮습니다. 중요한 건 자동 스크롤이 아니라
-          선택한 사용이라는 점입니다.
-        </p>
-
-        <div class="feedback-panel">
-          <span>이번 추천은 어땠나요?</span>
-          <div class="emoji-row">
-            <button class="emoji active">좋음</button>
-            <button class="emoji">보통</button>
-            <button class="emoji">별로</button>
-          </div>
-        </div>
-
-        <div class="bottom-actions">
-          <button class="btn btn-primary" data-next="report">리포트 보기</button>
-        </div>
-      </section>
-    </template>
-
-    <template id="screen-report">
-      <section class="screen-view report-view">
-        <div class="top-copy">
-          <p class="screen-kicker">이번 주 리포트</p>
-          <h2>작게 쌓였지만,<br />분명히 달라졌어요</h2>
-        </div>
-
-        <div class="metrics-grid">
-          <article class="metric-box">
-            <span>의도적 이동시간</span>
-            <strong>126분</strong>
-          </article>
-          <article class="metric-box">
-            <span>완료한 루틴</span>
-            <strong>9개</strong>
-          </article>
-          <article class="metric-box">
-            <span>출근길 유지</span>
-            <strong>4일</strong>
-          </article>
-          <article class="metric-box">
-            <span>회복 모드</span>
-            <strong>3회</strong>
-          </article>
-        </div>
-
-        <div class="trend-card">
-          <span>Week insight</span>
-          <strong>퇴근길에는 회고보다 회복 모드를 더 자주 선택했어요.</strong>
-          <small>다음 주에는 저에너지 추천 비중을 조금 높일 수 있어요.</small>
         </div>
 
         <div class="bottom-actions">
           <button class="btn btn-secondary" data-next="home">홈으로</button>
-          <button class="btn btn-primary" data-next="prompt">다시 체험</button>
+          <button class="btn btn-primary" data-next="practice">연습 시작</button>
+        </div>
+      </section>
+    </template>
+
+    <template id="screen-practice">
+      <section class="screen-view practice-view">
+        <div class="top-copy compact">
+          <p class="screen-kicker">Practice</p>
+          <h2>문장을 그냥 읽지 말고<br />직접 완성해보세요</h2>
+          <p class="screen-copy">
+            핵심 구문을 다시 떠올리게 만드는 20초짜리 연습입니다.
+          </p>
+        </div>
+
+        <div class="practice-card">
+          <span>빈칸 완성</span>
+          <strong>If you make it tiny, you're more ____ to do it every day.</strong>
+          <small>가장 자연스러운 표현을 고르세요.</small>
+
+          <div class="choice-row">
+            <button class="choice-chip" data-choice="likely" data-correct="true">likely</button>
+            <button class="choice-chip" data-choice="sure">sure</button>
+            <button class="choice-chip" data-choice="ready">ready</button>
+          </div>
+        </div>
+
+        <div class="feedback-panel" id="practice-feedback">
+          <span>피드백</span>
+          <strong>정답을 선택하면 설명이 여기에 표시됩니다.</strong>
+          <p>`be more likely to`는 어떤 행동을 하게 될 가능성을 말할 때 자연스럽게 씁니다.</p>
+        </div>
+
+        <div class="example-card">
+          <span>직접 이어 쓰기</span>
+          <strong>If I make my morning routine tiny, I'm more likely to ______.</strong>
+          <small>예: stick with it / keep going / do it before work</small>
+        </div>
+
+        <div class="bottom-actions">
+          <button class="btn btn-secondary" data-next="card">문장 다시 보기</button>
+          <button class="btn btn-primary" data-next="library">다음 문장으로</button>
+        </div>
+      </section>
+    </template>
+
+    <template id="screen-library">
+      <section class="screen-view library-view">
+        <header class="home-header">
+          <div>
+            <p class="screen-kicker">Library</p>
+            <h2>영상별 문장 보관함</h2>
+          </div>
+          <button class="ghost-btn" data-next="home">홈</button>
+        </header>
+
+        <div class="filter-row">
+          <button class="pill selected">오늘 본 문장</button>
+          <button class="pill">별표</button>
+          <button class="pill">연습 안 함</button>
+        </div>
+
+        <div class="library-group">
+          <div class="library-head">
+            <div>
+              <span>Source Video</span>
+              <strong>Tiny Habits Interview</strong>
+              <small>14 sentences</small>
+            </div>
+          </div>
+
+          <article class="library-item">
+            <div>
+              <strong>If you make it tiny, you're more likely to do it every day.</strong>
+              <small>작게 만들수록 매일 하게 될 가능성이 커진다</small>
+            </div>
+            <button class="mini-btn" data-next="practice">연습</button>
+          </article>
+
+          <article class="library-item">
+            <div>
+              <strong>The point is not to memorize everything.</strong>
+              <small>핵심은 모든 것을 외우는 데 있지 않다</small>
+            </div>
+            <button class="mini-btn subtle" data-next="card">보기</button>
+          </article>
+
+          <article class="library-item">
+            <div>
+              <strong>Notice what keeps showing up.</strong>
+              <small>반복해서 나타나는 것을 알아차려라</small>
+            </div>
+            <button class="mini-btn subtle" data-next="card">보기</button>
+          </article>
+        </div>
+
+        <div class="progress-card">
+          <span>오늘 진행률</span>
+          <strong>푸시 2/4 열람 · 연습 1회 완료</strong>
+          <small>다음 문장을 연습하면 오늘 루프가 한 번 더 강화됩니다.</small>
         </div>
       </section>
     </template>
