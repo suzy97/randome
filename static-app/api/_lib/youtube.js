@@ -1,4 +1,4 @@
-import { fetchTranscript } from "youtube-transcript";
+import { fetchTranscript } from "youtube-transcript/dist/youtube-transcript.esm.js";
 
 export function extractVideoId(url) {
   try {
