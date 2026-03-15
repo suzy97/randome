@@ -149,7 +149,11 @@ async function api(url, options = {}) {
   }
 
   if (!response.ok) {
-    throw new Error(payload.error || "요청 처리 중 문제가 발생했습니다.");
+    const message = payload.details
+      ? `${payload.error || "요청 처리 중 문제가 발생했습니다."} (${payload.details})`
+      : payload.error || "요청 처리 중 문제가 발생했습니다.";
+
+    throw new Error(message);
   }
 
   return payload;
